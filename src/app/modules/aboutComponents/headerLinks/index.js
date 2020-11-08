@@ -1,57 +1,57 @@
-import React, { memo, useState } from "react";
-import { useSpring, useTransition, animated } from "react-spring";
-import styles from "./header_links.module.scss";
-import { landingPageBody } from "Constants/landingConstants";
-import ContactComponent from "Common/components/contactComponent";
-import Div from "Common/components/div";
+import React, { memo, useState } from 'react'
+import { useSpring, useTransition, animated } from 'react-spring'
+import styles from './header_links.module.scss'
+import { landingPageBody } from 'Constants/landingConstants'
+import ContactComponent from 'Common/components/contactComponent'
+import Div from 'Common/components/div'
 
 const HeaderLinks = ({
   isFullScreen,
   bodyType,
   onClickTimeline,
-  onClickProject
+  onClickProject,
 }) => {
-  const [showMenu, setMenuState] = useState(false);
+  const [showMenu, setMenuState] = useState(false)
   const transition = useTransition(isFullScreen, null, {
     from: {
       opacity: 0,
-      transform: "translateY(-20px)"
+      transform: 'translateY(-20px)',
     },
     enter: {
       opacity: 1,
-      transform: "translateY(0px)"
+      transform: 'translateY(0px)',
     },
     leave: {
       opacity: 0,
-      transform: "translateY(-20px)"
-    }
+      transform: 'translateY(-20px)',
+    },
     // config: { delay: isFullScreen ? 600 : 0 }
-  });
+  })
   const springProps = useSpring({
     transformUnderline:
       bodyType == landingPageBody.TIMELINE
-        ? "translateX(0px)"
-        : "translateX(77px)",
-    underlineWidth: bodyType == landingPageBody.TIMELINE ? 62 : 37
-  });
+        ? 'translateX(0px)'
+        : 'translateX(77px)',
+    underlineWidth: bodyType == landingPageBody.TIMELINE ? 62 : 37,
+  })
 
   return transition.map(
     ({ item, props: transitionProps }) =>
       !item && (
         <Div
-          key="header-container"
+          key='header-container'
           animate
           row
           align
-          justify="space_between"
+          justify='space_between'
           style={transitionProps}
           className={`${styles.header_container} ${
-            showMenu ? styles.header_container__increase_index : ""
+            showMenu ? styles.header_container__increase_index : ''
           }`}
         >
-          <Div            
+          <Div
             className={`${styles.hamburger_menu} ${
-              showMenu ? styles.hamburger__selected : ""
+              showMenu ? styles.hamburger__selected : ''
             }`}
             onClick={() => setMenuState(!showMenu)}
           >
@@ -68,7 +68,7 @@ const HeaderLinks = ({
                 align
                 row
                 className={styles.speech_bubble_container}
-                onClick={event => event.stopPropagation()}
+                onClick={(event) => event.stopPropagation()}
               >
                 <ContactComponent />
               </Div>
@@ -95,14 +95,14 @@ const HeaderLinks = ({
             <animated.div
               style={{
                 transform: springProps.transformUnderline,
-                width: springProps.underlineWidth
+                width: springProps.underlineWidth,
               }}
               className={styles.underline}
             ></animated.div>
           </Div>
         </Div>
       )
-  );
-};
+  )
+}
 
-export default memo(HeaderLinks);
+export default memo(HeaderLinks)

@@ -1,13 +1,19 @@
-import React, { memo } from "react";
-import styles from "./header.module.scss";
-import BackgroundAnimator from "./backgroundAnimator";
-import { useTransition, animated, config } from 'react-spring';
+import React, { memo } from 'react'
+import styles from './header.module.scss'
+import BackgroundAnimator from './backgroundAnimator'
+import { useTransition, animated, config } from 'react-spring'
 
-const Header = ({ isFullScreen, showDescription, clientX, clientY, isFirstTime }) => {
+const Header = ({
+  isFullScreen,
+  showDescription,
+  clientX,
+  clientY,
+  isFirstTime,
+}) => {
   const containerTransition = useTransition(isFullScreen, null, {
     from: {
-      opacity: isFirstTime? 1 : 0,
-      transform: isFirstTime ? 'scaleY(1)': 'scaleY(0.07)',
+      opacity: isFirstTime ? 1 : 0,
+      transform: isFirstTime ? 'scaleY(1)' : 'scaleY(0.07)',
       background: isFirstTime ? '#33333300' : '#333333',
     },
     enter: {
@@ -20,25 +26,25 @@ const Header = ({ isFullScreen, showDescription, clientX, clientY, isFirstTime }
       transform: 'scaleY(0.07)',
       background: '#333333',
     },
-    config: isFullScreen ? config.default: config.slow
-  });
+    config: isFullScreen ? config.default : config.slow,
+  })
 
   const backgroundAnimatorTransition = useTransition(showDescription, null, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
-    leave: { opacity: 0 }
-  });
+    leave: { opacity: 0 },
+  })
 
-  return (
-    containerTransition.map(({ item: containerItem, props: transitionProps }) => (
+  return containerTransition.map(
+    ({ item: containerItem, props: transitionProps }) =>
       containerItem && (
         <animated.div
           key='header-container'
           style={transitionProps}
           className={styles.header_container}
         >
-          {
-            backgroundAnimatorTransition.map(({ item: backgroundItem, props: backgroundProps }) => (
+          {backgroundAnimatorTransition.map(
+            ({ item: backgroundItem, props: backgroundProps }) =>
               backgroundItem && (
                 <animated.div
                   key='background'
@@ -48,12 +54,10 @@ const Header = ({ isFullScreen, showDescription, clientX, clientY, isFirstTime }
                   <BackgroundAnimator clientX={clientX} clientY={clientY} />
                 </animated.div>
               )
-            ))
-          }
+          )}
         </animated.div>
       )
-    ))
-  );
+  )
 }
 
-export default memo(Header);
+export default memo(Header)

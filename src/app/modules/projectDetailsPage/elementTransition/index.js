@@ -1,29 +1,34 @@
-import React from 'react';
-import { useSpring, animated } from "react-spring";
-import { getBackgroundAnimation, getImageAnimation } from './helperFunctions';
+import React from 'react'
+import { useSpring, animated } from 'react-spring'
+import { getBackgroundAnimation, getImageAnimation } from './helperFunctions'
 
-const ElementTransition = ({ hideTransitionElement, project, sourceImage, sourceContainer, destinationImage }) => {
+const ElementTransition = ({
+  hideTransitionElement,
+  project,
+  sourceImage,
+  sourceContainer,
+  destinationImage,
+}) => {
   const backgroundTransitionAnimation = useSpring({
     from: getBackgroundAnimation(sourceContainer).from,
-    to: getBackgroundAnimation(sourceImage).to
-  });
+    to: getBackgroundAnimation(sourceImage).to,
+  })
 
   const imageTransitionAnimation = useSpring({
     from: getImageAnimation(sourceImage),
     to: getImageAnimation(destinationImage),
-  });
-
+  })
 
   return (
     <>
       <animated.div
         style={{
           ...backgroundTransitionAnimation,
-          position: "absolute",
-          background: "white",
+          position: 'absolute',
+          background: 'white',
           left: 0,
           right: 0,
-          zIndex: -3
+          zIndex: -3,
         }}
       />
 
@@ -32,11 +37,11 @@ const ElementTransition = ({ hideTransitionElement, project, sourceImage, source
           src={project.icon}
           style={{
             ...imageTransitionAnimation,
-            objectFit: "contain",
-            position: "absolute",
+            objectFit: 'contain',
+            position: 'absolute',
             left: 0,
             right: 0,
-            zIndex: 2
+            zIndex: 2,
           }}
         />
       )}
@@ -44,4 +49,4 @@ const ElementTransition = ({ hideTransitionElement, project, sourceImage, source
   )
 }
 
-export default ElementTransition;
+export default ElementTransition

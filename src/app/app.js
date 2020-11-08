@@ -1,18 +1,18 @@
-import React, { Suspense } from "react";
-import styles from "./app.scss";
-import Div from "Common/components/div";
-import Loader from "./modules/loader/loader";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { config } from "react-spring";
-import { Transition } from "react-spring/renderprops";
+import React, { Suspense } from 'react'
+import styles from './app.scss'
+import Div from 'Common/components/div'
+import Loader from './modules/loader/loader'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { config } from 'react-spring'
+import { Transition } from 'react-spring/renderprops'
 
 const PageTransitionExample = React.lazy(() =>
-  import("./examples/pageTransition")
-);
-const Landing = React.lazy(() => import("./modules/landing/landing"));
+  import('./examples/pageTransition')
+)
+const Landing = React.lazy(() => import('./modules/landing/landing'))
 const ProjectDetailsPage = React.lazy(() =>
-  import("./modules/projectDetailsPage")
-);
+  import('./modules/projectDetailsPage')
+)
 
 const App = () => {
   return (
@@ -21,16 +21,16 @@ const App = () => {
         <Suspense fallback={null}>
           <Switch>
             <Route
-              path="/example/pagetransition"
+              path='/example/pagetransition'
               component={PageTransitionExample}
             />
 
-            <Route path="/">
+            <Route path='/'>
               <Loader>
                 <Landing />
                 <Route
                   exact
-                  path="/project/:projectSlug?"
+                  path='/project/:projectSlug?'
                   children={({ match, ...rest }) => {
                     return (
                       <Transition
@@ -53,7 +53,7 @@ const App = () => {
                           ))
                         }
                       </Transition>
-                    );
+                    )
                   }}
                 />
               </Loader>
@@ -62,7 +62,7 @@ const App = () => {
         </Suspense>
       </Router>
     </Div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

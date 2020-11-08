@@ -1,6 +1,6 @@
-import React, { Component, memo } from "react";
-import styles from "./div.module.scss";
-import { animated } from "react-spring";
+import React, { Component, memo } from 'react'
+import styles from './div.module.scss'
+import { animated } from 'react-spring'
 
 class Div extends Component {
   render() {
@@ -17,52 +17,57 @@ class Div extends Component {
       style,
       passRef,
       ...rest
-    } = this.props;
+    } = this.props
 
     const classNameArray = [
       row ? styles.div_row : styles.div_column,
       align
-        ? typeof align == "string"
+        ? typeof align == 'string'
           ? styles[`align_${align}`]
           : styles.align_center
-        : "",
+        : '',
       justify
-        ? typeof justify == "string"
+        ? typeof justify == 'string'
           ? styles[`justify_${justify}`]
           : styles.justify_center
-        : "",
+        : '',
       alignSelf
-        ? typeof alignSelf == "string"
+        ? typeof alignSelf == 'string'
           ? styles[`align_self_${alignSelf}`]
           : styles.align_self_center
-        : "",
-      fillParent ? styles.fill_parent : "",
-      className
-    ];
+        : '',
+      fillParent ? styles.fill_parent : '',
+      className,
+    ]
 
-    let styleValue = style ? style : {};
+    let styleValue = style ? style : {}
 
     if (flex) {
-      styleValue = { ...styleValue, flex: typeof flex == "number" ? flex : 1 };
+      styleValue = { ...styleValue, flex: typeof flex == 'number' ? flex : 1 }
     }
 
     if (animate) {
       return (
         <animated.div
-          className={classNameArray.join(" ")}
+          className={classNameArray.join(' ')}
           style={styleValue}
           {...rest}
         >
           {children}
         </animated.div>
-      );
+      )
     }
 
     return (
-      <div ref={passRef} className={classNameArray.join(" ")} style={styleValue} {...rest}>
+      <div
+        ref={passRef}
+        className={classNameArray.join(' ')}
+        style={styleValue}
+        {...rest}
+      >
         {children}
       </div>
-    );
+    )
   }
 }
 
@@ -70,4 +75,4 @@ Div.defaultProps = {
   passRef: null,
 }
 
-export default memo(Div);
+export default memo(Div)
