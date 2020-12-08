@@ -8,10 +8,6 @@ Used Created-React-App for this project so to run locally
 
 <br/>
 
-### Desktop/Mobile Preview :
-<img align="left" height="300" src="./desktop-preview.gif">
-<img height="300" src="./mobile-preview.gif">
-
 ### Inspiration taken for some of the elements implemented
 [Loader animation](https://dribbble.com/shots/5942330-AVST-Loader-and-Blog-Animation) <br />
 [Technology and Timeline page](https://dribbble.com/shots/6151028-Hotel-Concept) <br />
