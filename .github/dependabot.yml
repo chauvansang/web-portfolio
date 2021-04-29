@@ -1,0 +1,25 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: css-loader
+    versions:
+    - 5.0.1
+    - 5.0.2
+    - 5.1.1
+    - 5.2.0
+    - 5.2.1
+    - 5.2.2
+  - dependency-name: eslint-plugin-flowtype
+    versions:
+    - 2.50.3
+  - dependency-name: resolve
+    versions:
+    - 1.19.0
+  - dependency-name: postcss-flexbugs-fixes
+    versions:
+    - 5.0.1
